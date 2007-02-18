@@ -1,0 +1,40 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\InventorManagement.frmAboutBox.resources
+obj\Debug\InventorManagement.frmCategories.resources
+obj\Debug\InventorManagement.frmEmployees.resources
+obj\Debug\InventorManagement.frmProducts.resources
+obj\Debug\InventorManagement.frmLogin.resources
+obj\Debug\InventorManagement.Resources.resources
+obj\Debug\Inventory Management.vbproj.GenerateResource.Cache
+bin\Debug\Inventory Management.exe.config
+bin\Debug\Inventory Management.exe.manifest
+bin\Debug\Inventory Management.application
+bin\Debug\Inventory Management.exe
+bin\Debug\Inventory Management.pdb
+bin\Debug\Inventory Management.xml
+obj\Debug\InventorManagement.frmMain.resources
+obj\Debug\Inventory Management.exe.manifest
+obj\Debug\Inventory Management.application
+obj\Debug\Inventory Management.exe
+obj\Debug\Inventory Management.xml
+obj\Debug\Inventory Management.pdb
+bin\Release\Inventory Management.exe.config
+bin\Release\Inventory Management.exe.manifest
+bin\Release\Inventory Management.application
+bin\Release\Inventory Management.exe
+bin\Release\Inventory Management.pdb
+bin\Release\Inventory Management.xml
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\InventorManagement.frmAboutBox.resources
+obj\Release\InventorManagement.frmCategories.resources
+obj\Release\InventorManagement.frmEmployees.resources
+obj\Release\InventorManagement.frmMain.resources
+obj\Release\InventorManagement.frmProducts.resources
+obj\Release\InventorManagement.frmLogin.resources
+obj\Release\InventorManagement.Resources.resources
+obj\Release\Inventory Management.vbproj.GenerateResource.Cache
+obj\Release\Inventory Management.exe.manifest
+obj\Release\Inventory Management.application
+obj\Release\Inventory Management.exe
+obj\Release\Inventory Management.xml
+obj\Release\Inventory Management.pdb
