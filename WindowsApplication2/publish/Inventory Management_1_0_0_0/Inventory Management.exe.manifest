@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asmv1:assemblyIdentity name="Inventory Management.exe" version="1.0.0.0" publicKeyToken="f72699b495bcf5ad" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Inventory Management" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Inventory Management.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="4" minorVersion="10" buildNumber="0" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="stdole" version="7.0.3300.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Inventory Management.exe" size="536576">
+      <assemblyIdentity name="Inventory Management" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>JbwQOkowvAz+nPHRhKvmN9UfYok=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Inventory Management.exe.config" size="1684">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>Wqb5qM5QWADA1jqTXz7p5GeyX+k=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DANDY-CC2D3D44F\Dandy" issuerKeyHash="1e424ca4a4dc8f75a248473423813bd7bb2cec64" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>TJD/p1+zbmEy5mXaLvFdcXTrOew=</DigestValue></Reference></SignedInfo><SignatureValue>frd+i+NfHcmb1yTtHu1LT4XZoXe2r8jPiNT1Tm74B8lBhsw6w1O/xlFpsQTGszG+darX4rU2PUFdjPIf3NlRQqI/PZy2yiWA9uVWr7CBhfsL+EucAmPuPNnkgrVG9MFtIe84qBKGzw2uokmoFm/F2Is1bjc9BvDxsNJHVouqvaM=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>xJym38uMFMeyZJMo4bd8s661vmb+lzrLF8rHGyT5sZqIt/zQmMykBbn9xWDTj2ZzK3RQL7XOfENP05giNSHtAkEVBDx/bJRHRTAMAOsEE/DjLoYHheVPiLaGCCAvGk87PB2QyaY4OdIH6gL4A9fSOtSCl9pwLx5yZDl3b+3JgA0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="ec39eb74715df12eda65e632616eb35fa7ff904c" Description="" Url=""><as:assemblyIdentity name="Inventory Management.exe" version="1.0.0.0" publicKeyToken="f72699b495bcf5ad" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DANDY-CC2D3D44F\Dandy</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>TM5nYT2I/T6lqDfeuWGFFkns6uY=</DigestValue></Reference></SignedInfo><SignatureValue>lXwoL26hiwNKPIaUtCWd/jau461YoW2u0bmJBMZwy3lQwSf7SniAruH30mk/tDh4baKpAD4r5IKtUedcZD+0T9F+fbiOB72h7zeLoxyugjdqhOVTmq44wPZ/DZzFBZ0zGforz9myoJbG+1WJAdt6B2AS/P/+eLwyHavVTKwb1AU=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>xJym38uMFMeyZJMo4bd8s661vmb+lzrLF8rHGyT5sZqIt/zQmMykBbn9xWDTj2ZzK3RQL7XOfENP05giNSHtAkEVBDx/bJRHRTAMAOsEE/DjLoYHheVPiLaGCCAvGk87PB2QyaY4OdIH6gL4A9fSOtSCl9pwLx5yZDl3b+3JgA0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB5TCCAVKgAwIBAgIQeiJ/98b21aNNUgU+uw2SWzAJBgUrDgMCHQUAMDUxMzAxBgNVBAMeKgBEAEEATgBEAFkALQBDAEMAMgBEADMARAA0ADQARgBcAEQAYQBuAGQAeTAeFw0wNzAyMDUxOTE4NDlaFw0wODAyMDYwMTE4NDlaMDUxMzAxBgNVBAMeKgBEAEEATgBEAFkALQBDAEMAMgBEADMARAA0ADQARgBcAEQAYQBuAGQAeTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAxJym38uMFMeyZJMo4bd8s661vmb+lzrLF8rHGyT5sZqIt/zQmMykBbn9xWDTj2ZzK3RQL7XOfENP05giNSHtAkEVBDx/bJRHRTAMAOsEE/DjLoYHheVPiLaGCCAvGk87PB2QyaY4OdIH6gL4A9fSOtSCl9pwLx5yZDl3b+3JgA0CAwEAATAJBgUrDgMCHQUAA4GBABO6GYlHd9GMcwzktkUiWb1fNvx8kH+hZbH//6la5m2bdOoBG9HYQF4dZHZC4YE5GLHsBfPh0Lj2dad4gqicwNDQd04MTZrUEyopccvlDy/BD3qkuewXSCyBzONRvjlkahNf4Q4eugVLHqEhjT6aMq5bcalG72mAGXzbjQBtlojr</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
