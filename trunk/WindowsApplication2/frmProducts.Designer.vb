@@ -28,6 +28,7 @@ Partial Class frmProducts
         Me.StockDataSet = New InventorManagement.stockDataSet
         Me.GroupBoxAdd = New System.Windows.Forms.GroupBox
         Me.GroupBoxComps = New System.Windows.Forms.GroupBox
+        Me.CategoriesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TextBox2 = New System.Windows.Forms.TextBox
         Me.lblReOrde = New System.Windows.Forms.Label
         Me.txtUnitPrice = New System.Windows.Forms.TextBox
@@ -36,7 +37,6 @@ Partial Class frmProducts
         Me.lblUnitsOnOrder = New System.Windows.Forms.Label
         Me.calcOrdered = New System.Windows.Forms.MonthCalendar
         Me.cmbCategory = New System.Windows.Forms.ComboBox
-        Me.CategoriesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtUnitsInStock = New System.Windows.Forms.TextBox
         Me.txtDateOrdered = New System.Windows.Forms.TextBox
         Me.txtSupplier = New System.Windows.Forms.TextBox
@@ -140,6 +140,11 @@ Partial Class frmProducts
         Me.GroupBoxComps.Name = "GroupBoxComps"
         Me.GroupBoxComps.TabStop = False
         '
+        'CategoriesBindingSource
+        '
+        Me.CategoriesBindingSource.DataMember = "Categories"
+        Me.CategoriesBindingSource.DataSource = Me.StockDataSetBindingSource
+        '
         'TextBox2
         '
         resources.ApplyResources(Me.TextBox2, "TextBox2")
@@ -193,11 +198,6 @@ Partial Class frmProducts
         resources.ApplyResources(Me.cmbCategory, "cmbCategory")
         Me.cmbCategory.Name = "cmbCategory"
         Me.cmbCategory.ValueMember = "CategoryID"
-        '
-        'CategoriesBindingSource
-        '
-        Me.CategoriesBindingSource.DataMember = "Categories"
-        Me.CategoriesBindingSource.DataSource = Me.StockDataSetBindingSource
         '
         'txtUnitsInStock
         '

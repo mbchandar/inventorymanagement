@@ -48,6 +48,8 @@ Partial Public Class stockDataSet
     
     Private relationCategories_Products As System.Data.DataRelation
     
+    Private relationProducts_Suppliers As System.Data.DataRelation
+    
     Private _schemaSerializationMode As System.Data.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
     
     <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -352,6 +354,7 @@ Partial Public Class stockDataSet
         Me.relationReference1 = Me.Relations("Reference1")
         Me.relationReference2 = Me.Relations("Reference2")
         Me.relationCategories_Products = Me.Relations("Categories_Products")
+        Me.relationProducts_Suppliers = Me.Relations("Products_Suppliers")
     End Sub
     
     <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -385,6 +388,8 @@ Partial Public Class stockDataSet
         Me.Relations.Add(Me.relationReference2)
         Me.relationCategories_Products = New System.Data.DataRelation("Categories_Products", New System.Data.DataColumn() {Me.tableCategories.CategoryIDColumn}, New System.Data.DataColumn() {Me.tableProducts.CategoryIDColumn}, false)
         Me.Relations.Add(Me.relationCategories_Products)
+        Me.relationProducts_Suppliers = New System.Data.DataRelation("Products_Suppliers", New System.Data.DataColumn() {Me.tableProducts.ProductIDColumn}, New System.Data.DataColumn() {Me.tableSuppliers.SupplierIDColumn}, false)
+        Me.Relations.Add(Me.relationProducts_Suppliers)
     End Sub
     
     <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -2276,17 +2281,7 @@ Partial Public Class stockDataSet
         
         Private columnContactName As System.Data.DataColumn
         
-        Private columnContactTitle As System.Data.DataColumn
-        
         Private columnAddress As System.Data.DataColumn
-        
-        Private columnCity As System.Data.DataColumn
-        
-        Private columnPostalCode As System.Data.DataColumn
-        
-        Private columnStateOrProvince As System.Data.DataColumn
-        
-        Private _columnCountry_Region As System.Data.DataColumn
         
         Private columnPhoneNumber As System.Data.DataColumn
         
@@ -2296,7 +2291,7 @@ Partial Public Class stockDataSet
         
         Private columnEmailAddress As System.Data.DataColumn
         
-        Private columnNotes As System.Data.DataColumn
+        Private columnisActive As System.Data.DataColumn
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub New()
@@ -2352,44 +2347,9 @@ Partial Public Class stockDataSet
         End Property
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property ContactTitleColumn() As System.Data.DataColumn
-            Get
-                Return Me.columnContactTitle
-            End Get
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public ReadOnly Property AddressColumn() As System.Data.DataColumn
             Get
                 Return Me.columnAddress
-            End Get
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property CityColumn() As System.Data.DataColumn
-            Get
-                Return Me.columnCity
-            End Get
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property PostalCodeColumn() As System.Data.DataColumn
-            Get
-                Return Me.columnPostalCode
-            End Get
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property StateOrProvinceColumn() As System.Data.DataColumn
-            Get
-                Return Me.columnStateOrProvince
-            End Get
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property _Country_RegionColumn() As System.Data.DataColumn
-            Get
-                Return Me._columnCountry_Region
             End Get
         End Property
         
@@ -2422,9 +2382,9 @@ Partial Public Class stockDataSet
         End Property
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property NotesColumn() As System.Data.DataColumn
+        Public ReadOnly Property isActiveColumn() As System.Data.DataColumn
             Get
-                Return Me.columnNotes
+                Return Me.columnisActive
             End Get
         End Property
         
@@ -2457,9 +2417,9 @@ Partial Public Class stockDataSet
         End Sub
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Overloads Function AddSuppliersRow(ByVal SupplierName As String, ByVal ContactName As String, ByVal ContactTitle As String, ByVal Address As String, ByVal City As String, ByVal PostalCode As String, ByVal StateOrProvince As String, ByVal _Country_Region As String, ByVal PhoneNumber As String, ByVal FaxNumber As String, ByVal PaymentTerms As String, ByVal EmailAddress As String, ByVal Notes As String) As SuppliersRow
+        Public Overloads Function AddSuppliersRow(ByVal SupplierName As String, ByVal ContactName As String, ByVal Address As String, ByVal PhoneNumber As String, ByVal FaxNumber As String, ByVal PaymentTerms As String, ByVal EmailAddress As String, ByVal isActive As String) As SuppliersRow
             Dim rowSuppliersRow As SuppliersRow = CType(Me.NewRow,SuppliersRow)
-            rowSuppliersRow.ItemArray = New Object() {Nothing, SupplierName, ContactName, ContactTitle, Address, City, PostalCode, StateOrProvince, _Country_Region, PhoneNumber, FaxNumber, PaymentTerms, EmailAddress, Notes}
+            rowSuppliersRow.ItemArray = New Object() {Nothing, SupplierName, ContactName, Address, PhoneNumber, FaxNumber, PaymentTerms, EmailAddress, isActive}
             Me.Rows.Add(rowSuppliersRow)
             Return rowSuppliersRow
         End Function
@@ -2491,17 +2451,12 @@ Partial Public Class stockDataSet
             Me.columnSupplierID = MyBase.Columns("SupplierID")
             Me.columnSupplierName = MyBase.Columns("SupplierName")
             Me.columnContactName = MyBase.Columns("ContactName")
-            Me.columnContactTitle = MyBase.Columns("ContactTitle")
             Me.columnAddress = MyBase.Columns("Address")
-            Me.columnCity = MyBase.Columns("City")
-            Me.columnPostalCode = MyBase.Columns("PostalCode")
-            Me.columnStateOrProvince = MyBase.Columns("StateOrProvince")
-            Me._columnCountry_Region = MyBase.Columns("Country/Region")
             Me.columnPhoneNumber = MyBase.Columns("PhoneNumber")
             Me.columnFaxNumber = MyBase.Columns("FaxNumber")
             Me.columnPaymentTerms = MyBase.Columns("PaymentTerms")
             Me.columnEmailAddress = MyBase.Columns("EmailAddress")
-            Me.columnNotes = MyBase.Columns("Notes")
+            Me.columnisActive = MyBase.Columns("isActive")
         End Sub
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -2512,22 +2467,8 @@ Partial Public Class stockDataSet
             MyBase.Columns.Add(Me.columnSupplierName)
             Me.columnContactName = New System.Data.DataColumn("ContactName", GetType(String), Nothing, System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnContactName)
-            Me.columnContactTitle = New System.Data.DataColumn("ContactTitle", GetType(String), Nothing, System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnContactTitle)
             Me.columnAddress = New System.Data.DataColumn("Address", GetType(String), Nothing, System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAddress)
-            Me.columnCity = New System.Data.DataColumn("City", GetType(String), Nothing, System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCity)
-            Me.columnPostalCode = New System.Data.DataColumn("PostalCode", GetType(String), Nothing, System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPostalCode)
-            Me.columnStateOrProvince = New System.Data.DataColumn("StateOrProvince", GetType(String), Nothing, System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStateOrProvince)
-            Me._columnCountry_Region = New System.Data.DataColumn("Country/Region", GetType(String), Nothing, System.Data.MappingType.Element)
-            Me._columnCountry_Region.ExtendedProperties.Add("Generator_ColumnPropNameInRow", "_Country_Region")
-            Me._columnCountry_Region.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "_Country_RegionColumn")
-            Me._columnCountry_Region.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnCountry_Region")
-            Me._columnCountry_Region.ExtendedProperties.Add("Generator_UserColumnName", "Country/Region")
-            MyBase.Columns.Add(Me._columnCountry_Region)
             Me.columnPhoneNumber = New System.Data.DataColumn("PhoneNumber", GetType(String), Nothing, System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPhoneNumber)
             Me.columnFaxNumber = New System.Data.DataColumn("FaxNumber", GetType(String), Nothing, System.Data.MappingType.Element)
@@ -2536,25 +2477,19 @@ Partial Public Class stockDataSet
             MyBase.Columns.Add(Me.columnPaymentTerms)
             Me.columnEmailAddress = New System.Data.DataColumn("EmailAddress", GetType(String), Nothing, System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnEmailAddress)
-            Me.columnNotes = New System.Data.DataColumn("Notes", GetType(String), Nothing, System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnNotes)
+            Me.columnisActive = New System.Data.DataColumn("isActive", GetType(String), Nothing, System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnisActive)
             Me.Constraints.Add(New System.Data.UniqueConstraint("Constraint1", New System.Data.DataColumn() {Me.columnSupplierID}, true))
             Me.columnSupplierID.AutoIncrement = true
             Me.columnSupplierID.AllowDBNull = false
             Me.columnSupplierID.Unique = true
             Me.columnSupplierName.MaxLength = 50
             Me.columnContactName.MaxLength = 50
-            Me.columnContactTitle.MaxLength = 50
             Me.columnAddress.MaxLength = 255
-            Me.columnCity.MaxLength = 50
-            Me.columnPostalCode.MaxLength = 20
-            Me.columnStateOrProvince.MaxLength = 20
-            Me._columnCountry_Region.MaxLength = 50
             Me.columnPhoneNumber.MaxLength = 30
             Me.columnFaxNumber.MaxLength = 30
             Me.columnPaymentTerms.MaxLength = 255
             Me.columnEmailAddress.MaxLength = 50
-            Me.columnNotes.MaxLength = 536870910
         End Sub
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -4949,6 +4884,11 @@ Partial Public Class stockDataSet
         Public Function GetOrder_DetailsRows() As Order_DetailsRow()
             Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("Reference1")),Order_DetailsRow())
         End Function
+        
+        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function GetSuppliersRows() As SuppliersRow()
+            Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("Products_Suppliers")),SuppliersRow())
+        End Function
     End Class
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
@@ -5002,20 +4942,6 @@ Partial Public Class stockDataSet
         End Property
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property ContactTitle() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSuppliers.ContactTitleColumn),String)
-                Catch e As System.InvalidCastException
-                    Throw New System.Data.StrongTypingException("The value for column 'ContactTitle' in table 'Suppliers' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSuppliers.ContactTitleColumn) = value
-            End Set
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Property Address() As String
             Get
                 Try 
@@ -5026,62 +4952,6 @@ Partial Public Class stockDataSet
             End Get
             Set
                 Me(Me.tableSuppliers.AddressColumn) = value
-            End Set
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property City() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSuppliers.CityColumn),String)
-                Catch e As System.InvalidCastException
-                    Throw New System.Data.StrongTypingException("The value for column 'City' in table 'Suppliers' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSuppliers.CityColumn) = value
-            End Set
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property PostalCode() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSuppliers.PostalCodeColumn),String)
-                Catch e As System.InvalidCastException
-                    Throw New System.Data.StrongTypingException("The value for column 'PostalCode' in table 'Suppliers' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSuppliers.PostalCodeColumn) = value
-            End Set
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property StateOrProvince() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSuppliers.StateOrProvinceColumn),String)
-                Catch e As System.InvalidCastException
-                    Throw New System.Data.StrongTypingException("The value for column 'StateOrProvince' in table 'Suppliers' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSuppliers.StateOrProvinceColumn) = value
-            End Set
-        End Property
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property _Country_Region() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSuppliers._Country_RegionColumn),String)
-                Catch e As System.InvalidCastException
-                    Throw New System.Data.StrongTypingException("The value for column 'Country/Region' in table 'Suppliers' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSuppliers._Country_RegionColumn) = value
             End Set
         End Property
         
@@ -5142,16 +5012,26 @@ Partial Public Class stockDataSet
         End Property
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property Notes() As String
+        Public Property isActive() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableSuppliers.NotesColumn),String)
+                    Return CType(Me(Me.tableSuppliers.isActiveColumn),String)
                 Catch e As System.InvalidCastException
-                    Throw New System.Data.StrongTypingException("The value for column 'Notes' in table 'Suppliers' is DBNull.", e)
+                    Throw New System.Data.StrongTypingException("The value for column 'isActive' in table 'Suppliers' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableSuppliers.NotesColumn) = value
+                Me(Me.tableSuppliers.isActiveColumn) = value
+            End Set
+        End Property
+        
+        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ProductsRow() As ProductsRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("Products_Suppliers")),ProductsRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("Products_Suppliers"))
             End Set
         End Property
         
@@ -5176,16 +5056,6 @@ Partial Public Class stockDataSet
         End Sub
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsContactTitleNull() As Boolean
-            Return Me.IsNull(Me.tableSuppliers.ContactTitleColumn)
-        End Function
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetContactTitleNull()
-            Me(Me.tableSuppliers.ContactTitleColumn) = System.Convert.DBNull
-        End Sub
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsAddressNull() As Boolean
             Return Me.IsNull(Me.tableSuppliers.AddressColumn)
         End Function
@@ -5193,46 +5063,6 @@ Partial Public Class stockDataSet
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetAddressNull()
             Me(Me.tableSuppliers.AddressColumn) = System.Convert.DBNull
-        End Sub
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsCityNull() As Boolean
-            Return Me.IsNull(Me.tableSuppliers.CityColumn)
-        End Function
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetCityNull()
-            Me(Me.tableSuppliers.CityColumn) = System.Convert.DBNull
-        End Sub
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsPostalCodeNull() As Boolean
-            Return Me.IsNull(Me.tableSuppliers.PostalCodeColumn)
-        End Function
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetPostalCodeNull()
-            Me(Me.tableSuppliers.PostalCodeColumn) = System.Convert.DBNull
-        End Sub
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsStateOrProvinceNull() As Boolean
-            Return Me.IsNull(Me.tableSuppliers.StateOrProvinceColumn)
-        End Function
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetStateOrProvinceNull()
-            Me(Me.tableSuppliers.StateOrProvinceColumn) = System.Convert.DBNull
-        End Sub
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function Is_Country_RegionNull() As Boolean
-            Return Me.IsNull(Me.tableSuppliers._Country_RegionColumn)
-        End Function
-        
-        <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub Set_Country_RegionNull()
-            Me(Me.tableSuppliers._Country_RegionColumn) = System.Convert.DBNull
         End Sub
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -5276,13 +5106,13 @@ Partial Public Class stockDataSet
         End Sub
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsNotesNull() As Boolean
-            Return Me.IsNull(Me.tableSuppliers.NotesColumn)
+        Public Function IsisActiveNull() As Boolean
+            Return Me.IsNull(Me.tableSuppliers.isActiveColumn)
         End Function
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetNotesNull()
-            Me(Me.tableSuppliers.NotesColumn) = System.Convert.DBNull
+        Public Sub SetisActiveNull()
+            Me(Me.tableSuppliers.isActiveColumn) = System.Convert.DBNull
         End Sub
     End Class
     
@@ -9722,48 +9552,29 @@ Namespace stockDataSetTableAdapters
             tableMapping.ColumnMappings.Add("SupplierID", "SupplierID")
             tableMapping.ColumnMappings.Add("SupplierName", "SupplierName")
             tableMapping.ColumnMappings.Add("ContactName", "ContactName")
-            tableMapping.ColumnMappings.Add("ContactTitle", "ContactTitle")
             tableMapping.ColumnMappings.Add("Address", "Address")
-            tableMapping.ColumnMappings.Add("City", "City")
-            tableMapping.ColumnMappings.Add("PostalCode", "PostalCode")
-            tableMapping.ColumnMappings.Add("StateOrProvince", "StateOrProvince")
-            tableMapping.ColumnMappings.Add("Country/Region", "Country/Region")
             tableMapping.ColumnMappings.Add("PhoneNumber", "PhoneNumber")
             tableMapping.ColumnMappings.Add("FaxNumber", "FaxNumber")
             tableMapping.ColumnMappings.Add("PaymentTerms", "PaymentTerms")
             tableMapping.ColumnMappings.Add("EmailAddress", "EmailAddress")
-            tableMapping.ColumnMappings.Add("Notes", "Notes")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New System.Data.OleDb.OleDbCommand
             Me._adapter.DeleteCommand.Connection = Me.Connection
             Me._adapter.DeleteCommand.CommandText = "DELETE FROM `Suppliers` WHERE ((`SupplierID` = ?) AND ((? = 1 AND `SupplierName` "& _ 
                 "IS NULL) OR (`SupplierName` = ?)) AND ((? = 1 AND `ContactName` IS NULL) OR (`Co"& _ 
-                "ntactName` = ?)) AND ((? = 1 AND `ContactTitle` IS NULL) OR (`ContactTitle` = ?)"& _ 
-                ") AND ((? = 1 AND `Address` IS NULL) OR (`Address` = ?)) AND ((? = 1 AND `City` "& _ 
-                "IS NULL) OR (`City` = ?)) AND ((? = 1 AND `PostalCode` IS NULL) OR (`PostalCode`"& _ 
-                " = ?)) AND ((? = 1 AND `StateOrProvince` IS NULL) OR (`StateOrProvince` = ?)) AN"& _ 
-                "D ((? = 1 AND `Country/Region` IS NULL) OR (`Country/Region` = ?)) AND ((? = 1 A"& _ 
-                "ND `PhoneNumber` IS NULL) OR (`PhoneNumber` = ?)) AND ((? = 1 AND `FaxNumber` IS"& _ 
-                " NULL) OR (`FaxNumber` = ?)) AND ((? = 1 AND `PaymentTerms` IS NULL) OR (`Paymen"& _ 
-                "tTerms` = ?)) AND ((? = 1 AND `EmailAddress` IS NULL) OR (`EmailAddress` = ?)))"
+                "ntactName` = ?)) AND ((? = 1 AND `Address` IS NULL) OR (`Address` = ?)) AND ((? "& _ 
+                "= 1 AND `PhoneNumber` IS NULL) OR (`PhoneNumber` = ?)) AND ((? = 1 AND `FaxNumbe"& _ 
+                "r` IS NULL) OR (`FaxNumber` = ?)) AND ((? = 1 AND `PaymentTerms` IS NULL) OR (`P"& _ 
+                "aymentTerms` = ?)) AND ((? = 1 AND `EmailAddress` IS NULL) OR (`EmailAddress` = "& _ 
+                "?)))"
             Me._adapter.DeleteCommand.CommandType = System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SupplierID", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierID", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_SupplierName", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierName", System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SupplierName", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierName", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_ContactName", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactName", System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ContactName", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactName", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_ContactTitle", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactTitle", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ContactTitle", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactTitle", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_Address", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Address", System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_Address", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Address", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_City", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "City", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_City", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "City", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_PostalCode", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PostalCode", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_PostalCode", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PostalCode", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_StateOrProvince", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "StateOrProvince", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_StateOrProvince", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "StateOrProvince", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_Country/Region", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Country/Region", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_Country/Region", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Country/Region", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_PhoneNumber", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PhoneNumber", System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_PhoneNumber", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PhoneNumber", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_FaxNumber", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FaxNumber", System.Data.DataRowVersion.Original, true, Nothing))
@@ -9774,70 +9585,41 @@ Namespace stockDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_EmailAddress", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "EmailAddress", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New System.Data.OleDb.OleDbCommand
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `Suppliers` (`SupplierName`, `ContactName`, `ContactTitle`, `Address`"& _ 
-                ", `City`, `PostalCode`, `StateOrProvince`, `Country/Region`, `PhoneNumber`, `Fax"& _ 
-                "Number`, `PaymentTerms`, `EmailAddress`, `Notes`) VALUES (?, ?, ?, ?, ?, ?, ?, ?"& _ 
-                ", ?, ?, ?, ?, ?)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `Suppliers` (`SupplierName`, `ContactName`, `Address`, `PhoneNumber`,"& _ 
+                " `FaxNumber`, `PaymentTerms`, `EmailAddress`) VALUES (?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("SupplierName", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierName", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("ContactName", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactName", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("ContactTitle", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactTitle", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Address", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Address", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("City", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "City", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("PostalCode", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PostalCode", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("StateOrProvince", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "StateOrProvince", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Country/Region", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Country/Region", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("PhoneNumber", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PhoneNumber", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("FaxNumber", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FaxNumber", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("PaymentTerms", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PaymentTerms", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("EmailAddress", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "EmailAddress", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Notes", System.Data.OleDb.OleDbType.LongVarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Notes", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New System.Data.OleDb.OleDbCommand
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `Suppliers` SET `SupplierName` = ?, `ContactName` = ?, `ContactTitle` = ?,"& _ 
-                " `Address` = ?, `City` = ?, `PostalCode` = ?, `StateOrProvince` = ?, `Country/Re"& _ 
-                "gion` = ?, `PhoneNumber` = ?, `FaxNumber` = ?, `PaymentTerms` = ?, `EmailAddress"& _ 
-                "` = ?, `Notes` = ? WHERE ((`SupplierID` = ?) AND ((? = 1 AND `SupplierName` IS N"& _ 
-                "ULL) OR (`SupplierName` = ?)) AND ((? = 1 AND `ContactName` IS NULL) OR (`Contac"& _ 
-                "tName` = ?)) AND ((? = 1 AND `ContactTitle` IS NULL) OR (`ContactTitle` = ?)) AN"& _ 
-                "D ((? = 1 AND `Address` IS NULL) OR (`Address` = ?)) AND ((? = 1 AND `City` IS N"& _ 
-                "ULL) OR (`City` = ?)) AND ((? = 1 AND `PostalCode` IS NULL) OR (`PostalCode` = ?"& _ 
-                ")) AND ((? = 1 AND `StateOrProvince` IS NULL) OR (`StateOrProvince` = ?)) AND (("& _ 
-                "? = 1 AND `Country/Region` IS NULL) OR (`Country/Region` = ?)) AND ((? = 1 AND `"& _ 
-                "PhoneNumber` IS NULL) OR (`PhoneNumber` = ?)) AND ((? = 1 AND `FaxNumber` IS NUL"& _ 
-                "L) OR (`FaxNumber` = ?)) AND ((? = 1 AND `PaymentTerms` IS NULL) OR (`PaymentTer"& _ 
-                "ms` = ?)) AND ((? = 1 AND `EmailAddress` IS NULL) OR (`EmailAddress` = ?)))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `Suppliers` SET `SupplierName` = ?, `ContactName` = ?, `Address` = ?, `Pho"& _ 
+                "neNumber` = ?, `FaxNumber` = ?, `PaymentTerms` = ?, `EmailAddress` = ? WHERE ((`"& _ 
+                "SupplierID` = ?) AND ((? = 1 AND `SupplierName` IS NULL) OR (`SupplierName` = ?)"& _ 
+                ") AND ((? = 1 AND `ContactName` IS NULL) OR (`ContactName` = ?)) AND ((? = 1 AND"& _ 
+                " `Address` IS NULL) OR (`Address` = ?)) AND ((? = 1 AND `PhoneNumber` IS NULL) O"& _ 
+                "R (`PhoneNumber` = ?)) AND ((? = 1 AND `FaxNumber` IS NULL) OR (`FaxNumber` = ?)"& _ 
+                ") AND ((? = 1 AND `PaymentTerms` IS NULL) OR (`PaymentTerms` = ?)) AND ((? = 1 A"& _ 
+                "ND `EmailAddress` IS NULL) OR (`EmailAddress` = ?)))"
             Me._adapter.UpdateCommand.CommandType = System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("SupplierName", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierName", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("ContactName", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactName", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("ContactTitle", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactTitle", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Address", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Address", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("City", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "City", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("PostalCode", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PostalCode", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("StateOrProvince", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "StateOrProvince", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Country/Region", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Country/Region", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("PhoneNumber", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PhoneNumber", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("FaxNumber", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FaxNumber", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("PaymentTerms", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PaymentTerms", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("EmailAddress", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "EmailAddress", System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Notes", System.Data.OleDb.OleDbType.LongVarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Notes", System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SupplierID", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierID", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_SupplierName", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierName", System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SupplierName", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierName", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_ContactName", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactName", System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ContactName", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactName", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_ContactTitle", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactTitle", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ContactTitle", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactTitle", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_Address", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Address", System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_Address", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Address", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_City", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "City", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_City", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "City", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_PostalCode", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PostalCode", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_PostalCode", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PostalCode", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_StateOrProvince", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "StateOrProvince", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_StateOrProvince", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "StateOrProvince", System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_Country/Region", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Country/Region", System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_Country/Region", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Country/Region", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_PhoneNumber", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PhoneNumber", System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_PhoneNumber", System.Data.OleDb.OleDbType.VarWChar, 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PhoneNumber", System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New System.Data.OleDb.OleDbParameter("IsNull_FaxNumber", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FaxNumber", System.Data.DataRowVersion.Original, true, Nothing))
@@ -9859,9 +9641,8 @@ Namespace stockDataSetTableAdapters
             Me._commandCollection = New System.Data.OleDb.OleDbCommand(0) {}
             Me._commandCollection(0) = New System.Data.OleDb.OleDbCommand
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT SupplierID, SupplierName, ContactName, ContactTitle, Address, City, Postal"& _ 
-                "Code, StateOrProvince, [Country/Region], PhoneNumber, FaxNumber, PaymentTerms, E"& _ 
-                "mailAddress, Notes FROM Suppliers"
+            Me._commandCollection(0).CommandText = "SELECT SupplierID, SupplierName, ContactName, Address, PhoneNumber, FaxNumber, Pa"& _ 
+                "ymentTerms, EmailAddress FROM Suppliers WHERE (isActive = 'Y')"
             Me._commandCollection(0).CommandType = System.Data.CommandType.Text
         End Sub
         
@@ -9914,7 +9695,7 @@ Namespace stockDataSetTableAdapters
         <System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_SupplierID As Integer, ByVal Original_SupplierName As String, ByVal Original_ContactName As String, ByVal Original_ContactTitle As String, ByVal Original_Address As String, ByVal Original_City As String, ByVal Original_PostalCode As String, ByVal Original_StateOrProvince As String, ByVal _Original_Country_Region As String, ByVal Original_PhoneNumber As String, ByVal Original_FaxNumber As String, ByVal Original_PaymentTerms As String, ByVal Original_EmailAddress As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_SupplierID As Integer, ByVal Original_SupplierName As String, ByVal Original_ContactName As String, ByVal Original_Address As String, ByVal Original_PhoneNumber As String, ByVal Original_FaxNumber As String, ByVal Original_PaymentTerms As String, ByVal Original_EmailAddress As String) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_SupplierID,Integer)
             If (Original_SupplierName Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
@@ -9930,75 +9711,40 @@ Namespace stockDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_ContactName,String)
             End If
-            If (Original_ContactTitle Is Nothing) Then
+            If (Original_Address Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(6).Value = System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_ContactTitle,String)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Address,String)
             End If
-            If (Original_Address Is Nothing) Then
+            If (Original_PhoneNumber Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(8).Value = System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_Address,String)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_PhoneNumber,String)
             End If
-            If (Original_City Is Nothing) Then
+            If (Original_FaxNumber Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(10).Value = System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_City,String)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_FaxNumber,String)
             End If
-            If (Original_PostalCode Is Nothing) Then
+            If (Original_PaymentTerms Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(12).Value = System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_PostalCode,String)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_PaymentTerms,String)
             End If
-            If (Original_StateOrProvince Is Nothing) Then
+            If (Original_EmailAddress Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(14).Value = System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_StateOrProvince,String)
-            End If
-            If (_Original_Country_Region Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(_Original_Country_Region,String)
-            End If
-            If (Original_PhoneNumber Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_PhoneNumber,String)
-            End If
-            If (Original_FaxNumber Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_FaxNumber,String)
-            End If
-            If (Original_PaymentTerms Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_PaymentTerms,String)
-            End If
-            If (Original_EmailAddress Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_EmailAddress,String)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_EmailAddress,String)
             End If
             Dim previousConnectionState As System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And System.Data.ConnectionState.Open)  _
@@ -10018,7 +9764,7 @@ Namespace stockDataSetTableAdapters
         <System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal SupplierName As String, ByVal ContactName As String, ByVal ContactTitle As String, ByVal Address As String, ByVal City As String, ByVal PostalCode As String, ByVal StateOrProvince As String, ByVal _Country_Region As String, ByVal PhoneNumber As String, ByVal FaxNumber As String, ByVal PaymentTerms As String, ByVal EmailAddress As String, ByVal Notes As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal SupplierName As String, ByVal ContactName As String, ByVal Address As String, ByVal PhoneNumber As String, ByVal FaxNumber As String, ByVal PaymentTerms As String, ByVal EmailAddress As String) As Integer
             If (SupplierName Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = System.DBNull.Value
             Else
@@ -10029,60 +9775,30 @@ Namespace stockDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = CType(ContactName,String)
             End If
-            If (ContactTitle Is Nothing) Then
+            If (Address Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(2).Value = System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(ContactTitle,String)
-            End If
-            If (Address Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Address,String)
-            End If
-            If (City Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(City,String)
-            End If
-            If (PostalCode Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(PostalCode,String)
-            End If
-            If (StateOrProvince Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(StateOrProvince,String)
-            End If
-            If (_Country_Region Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(_Country_Region,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Address,String)
             End If
             If (PhoneNumber Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(3).Value = System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(PhoneNumber,String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(PhoneNumber,String)
             End If
             If (FaxNumber Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(4).Value = System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(FaxNumber,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(FaxNumber,String)
             End If
             If (PaymentTerms Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(5).Value = System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(PaymentTerms,String)
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(PaymentTerms,String)
             End If
             If (EmailAddress Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(6).Value = System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(EmailAddress,String)
-            End If
-            If (Notes Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Notes,String)
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(EmailAddress,String)
             End If
             Dim previousConnectionState As System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And System.Data.ConnectionState.Open)  _
@@ -10102,33 +9818,7 @@ Namespace stockDataSetTableAdapters
         <System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal SupplierName As String,  _
-                    ByVal ContactName As String,  _
-                    ByVal ContactTitle As String,  _
-                    ByVal Address As String,  _
-                    ByVal City As String,  _
-                    ByVal PostalCode As String,  _
-                    ByVal StateOrProvince As String,  _
-                    ByVal _Country_Region As String,  _
-                    ByVal PhoneNumber As String,  _
-                    ByVal FaxNumber As String,  _
-                    ByVal PaymentTerms As String,  _
-                    ByVal EmailAddress As String,  _
-                    ByVal Notes As String,  _
-                    ByVal Original_SupplierID As Integer,  _
-                    ByVal Original_SupplierName As String,  _
-                    ByVal Original_ContactName As String,  _
-                    ByVal Original_ContactTitle As String,  _
-                    ByVal Original_Address As String,  _
-                    ByVal Original_City As String,  _
-                    ByVal Original_PostalCode As String,  _
-                    ByVal Original_StateOrProvince As String,  _
-                    ByVal _Original_Country_Region As String,  _
-                    ByVal Original_PhoneNumber As String,  _
-                    ByVal Original_FaxNumber As String,  _
-                    ByVal Original_PaymentTerms As String,  _
-                    ByVal Original_EmailAddress As String) As Integer
+        Public Overloads Overridable Function Update(ByVal SupplierName As String, ByVal ContactName As String, ByVal Address As String, ByVal PhoneNumber As String, ByVal FaxNumber As String, ByVal PaymentTerms As String, ByVal EmailAddress As String, ByVal Original_SupplierID As Integer, ByVal Original_SupplierName As String, ByVal Original_ContactName As String, ByVal Original_Address As String, ByVal Original_PhoneNumber As String, ByVal Original_FaxNumber As String, ByVal Original_PaymentTerms As String, ByVal Original_EmailAddress As String) As Integer
             If (SupplierName Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = System.DBNull.Value
             Else
@@ -10139,145 +9829,80 @@ Namespace stockDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = CType(ContactName,String)
             End If
-            If (ContactTitle Is Nothing) Then
+            If (Address Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(ContactTitle,String)
-            End If
-            If (Address Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Address,String)
-            End If
-            If (City Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(City,String)
-            End If
-            If (PostalCode Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(PostalCode,String)
-            End If
-            If (StateOrProvince Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(StateOrProvince,String)
-            End If
-            If (_Country_Region Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(_Country_Region,String)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Address,String)
             End If
             If (PhoneNumber Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(3).Value = System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PhoneNumber,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(PhoneNumber,String)
             End If
             If (FaxNumber Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(4).Value = System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(FaxNumber,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(FaxNumber,String)
             End If
             If (PaymentTerms Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(5).Value = System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(PaymentTerms,String)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(PaymentTerms,String)
             End If
             If (EmailAddress Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(EmailAddress,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_SupplierID,Integer)
+            If (Original_SupplierName Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_SupplierName,String)
+            End If
+            If (Original_ContactName Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(11).Value = System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(EmailAddress,String)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_ContactName,String)
             End If
-            If (Notes Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = System.DBNull.Value
+            If (Original_Address Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Notes,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Address,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_SupplierID,Integer)
-            If (Original_SupplierName Is Nothing) Then
+            If (Original_PhoneNumber Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(15).Value = System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_SupplierName,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_PhoneNumber,String)
             End If
-            If (Original_ContactName Is Nothing) Then
+            If (Original_FaxNumber Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(17).Value = System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_ContactName,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_FaxNumber,String)
             End If
-            If (Original_ContactTitle Is Nothing) Then
+            If (Original_PaymentTerms Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(19).Value = System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_ContactTitle,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_PaymentTerms,String)
             End If
-            If (Original_Address Is Nothing) Then
+            If (Original_EmailAddress Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(21).Value = System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Address,String)
-            End If
-            If (Original_City Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_City,String)
-            End If
-            If (Original_PostalCode Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_PostalCode,String)
-            End If
-            If (Original_StateOrProvince Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_StateOrProvince,String)
-            End If
-            If (_Original_Country_Region Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(_Original_Country_Region,String)
-            End If
-            If (Original_PhoneNumber Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_PhoneNumber,String)
-            End If
-            If (Original_FaxNumber Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_FaxNumber,String)
-            End If
-            If (Original_PaymentTerms Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_PaymentTerms,String)
-            End If
-            If (Original_EmailAddress Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_EmailAddress,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_EmailAddress,String)
             End If
             Dim previousConnectionState As System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And System.Data.ConnectionState.Open)  _
