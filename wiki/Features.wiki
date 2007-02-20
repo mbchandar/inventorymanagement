@@ -1,0 +1,13 @@
+
+ * Categories
+ * Suppliers
+ * Products
+ * Employees
+ * Currency
+ * Payment Types
+ * Languages
+ * Reporting
+   # Categories
+   # Employee Sales
+   # Suppliers
+   # Daily, Monthly, Yearly
