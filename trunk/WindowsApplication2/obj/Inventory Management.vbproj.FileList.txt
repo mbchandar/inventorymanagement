@@ -39,3 +39,12 @@ obj\Release\Inventory Management.exe
 obj\Release\Inventory Management.xml
 obj\Release\Inventory Management.pdb
 obj\Debug\InventorManagement.frmSuppliers.resources
+bin\Debug\Interop.MSComctlLib.dll
+bin\Debug\Interop.OWC11.dll
+bin\Debug\AxInterop.OWC11.dll
+obj\Debug\Interop.MSComctlLib.dll
+obj\Debug\Interop.OWC11.dll
+obj\Debug\AxInterop.OWC11.dll
+obj\Debug\Inventory Management.vbproj.ResolveComReference.cache
+bin\Debug\Interop.MSChart20Lib.dll
+obj\Debug\Interop.MSChart20Lib.dll

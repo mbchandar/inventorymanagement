@@ -73,7 +73,7 @@ Partial Class frmSuppliers
         Me.lbSupplier.BackColor = System.Drawing.Color.White
         Me.lbSupplier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lbSupplier.DataSource = Me.SuppliersBindingSource
-        Me.lbSupplier.DisplayMember = "Name"
+        Me.lbSupplier.DisplayMember = "SupplierName"
         resources.ApplyResources(Me.lbSupplier, "lbSupplier")
         Me.lbSupplier.FormatString = "Bala"
         Me.lbSupplier.FormattingEnabled = True

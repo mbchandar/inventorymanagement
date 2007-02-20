@@ -30,13 +30,13 @@ Public Class frmMain
         frmAboutBox.ShowDialog()
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        frmCategories.MdiParent = Me
-        frmCategories.WindowState = FormWindowState.Maximized
-        frmCategories.Show()
+    Private Sub mnuSuppliers_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuSuppliers.Click
+        frmSuppliers.MdiParent = Me
+        frmSuppliers.WindowState = FormWindowState.Maximized
+        frmSuppliers.Show()
     End Sub
 
-    Private Sub RibbonGroup1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
+    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
     End Sub
 End Class
