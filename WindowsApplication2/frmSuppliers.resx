@@ -138,7 +138,7 @@
     <value>4, 17</value>
   </data>
   <data name="lbSupplier.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 379</value>
+    <value>231, 392</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbSupplier.TabIndex" type="System.Int32, mscorlib">
@@ -169,7 +169,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="SupplierList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 399</value>
+    <value>239, 414</value>
   </data>
   <data name="SupplierList.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -236,9 +236,6 @@
   </data>
   <data name="txtEmail.TabIndex" type="System.Int32, mscorlib">
     <value>56</value>
-  </data>
-  <data name="txtEmail.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtEmail.Name" xml:space="preserve">
     <value>txtEmail</value>
@@ -422,6 +419,9 @@
   </data>
   <data name="txtPhoneNumber.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
+  </data>
+  <data name="txtPhoneNumber.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtPhoneNumber.Name" xml:space="preserve">
     <value>txtPhoneNumber</value>
@@ -631,7 +631,7 @@
     <value>18, 19</value>
   </data>
   <data name="GroupBoxComps.Size" type="System.Drawing.Size, System.Drawing">
-    <value>606, 368</value>
+    <value>606, 281</value>
   </data>
   <data name="GroupBoxComps.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -655,7 +655,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, 402</value>
+    <value>367, 340</value>
   </data>
   <data name="btnDelete.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -688,7 +688,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>286, 402</value>
+    <value>282, 340</value>
   </data>
   <data name="btnSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -721,7 +721,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>545, 402</value>
+    <value>541, 340</value>
   </data>
   <data name="btnClose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -754,7 +754,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>460, 402</value>
+    <value>456, 340</value>
   </data>
   <data name="btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -793,7 +793,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>201, 402</value>
+    <value>197, 340</value>
   </data>
   <data name="btnAdd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 3, 4, 3</value>
@@ -829,7 +829,7 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="GroupBoxAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>644, 471</value>
+    <value>644, 414</value>
   </data>
   <data name="GroupBoxAdd.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>

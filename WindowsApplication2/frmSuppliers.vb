@@ -23,15 +23,15 @@ Public Class frmSuppliers
         End If
         Me.lbSupplier.SelectionMode = SelectionMode.None
         If Trim(Int(cId)) <> 0 Then
-            'Me.SuppliersTableAdapter.UpdateQuery(Me.txtDepartmentName.Text, Me.txtSupplierName.Text, Me.txtInfo.Text, Me.txtDateHired.Text, Me.txtSalary.Text, Me.txtOfficeLocation.Text, cId)
+            Me.SuppliersTableAdapter.UpdateQuery(Me.txtSupplierName.Text, Me.txtContactName.Text, Me.txtSupplierAddress.Text, Me.txtPhoneNumber.Text, Me.txtFaxNumber.Text, Me.ComboBox1.SelectedItem, Me.txtEmail.Text, cId)
             MsgBox("Successfully updated!")
         Else
-            ' If Me.SuppliersTableAdapter.InsertQuery(Me.txtSupplierName.Text, Me.txtSupplierDescription.Text, Me.txtDateOrdered.Text, Me.txtSupplier.Text, "", Me.txtUnitsInStock.Text, Me.txtUnitsOnOrder.Text, "", "", "", "", "Y") Then
-            'MsgBox("Successfully Added")
-            'Else
-            'MsgBox("Error Adding")
-            'Return
-            'End If
+            If Me.SuppliersTableAdapter.InsertQuery(Me.txtSupplierName.Text, Me.txtContactName.Text, Me.txtSupplierAddress.Text, Me.txtPhoneNumber.Text, Me.txtFaxNumber.Text, Me.ComboBox1.SelectedItem, Me.txtEmail.Text, "Y") Then
+                MsgBox("Successfully Added")
+            Else
+                MsgBox("Error Adding")
+                Return
+            End If
         End If
 
         Me.SuppliersTableAdapter.Fill(Me.StockDataSet.Suppliers)
@@ -42,9 +42,9 @@ Public Class frmSuppliers
         Me.txtSupplierName.Text = ""
         Me.txtSupplierAddress.Text = ""
         Me.txtContactName.Text = ""
-
         Me.txtPhoneNumber.Text = ""
         Me.txtFaxNumber.Text = ""
+        Me.txtEmail.Text = ""
 
         Me.GroupBoxComps.Enabled = False
 
@@ -58,14 +58,15 @@ Public Class frmSuppliers
         Me.btnAdd.Focus()
 
         Me.GroupBoxComps.Enabled = False
-
         Me.lbSupplier.SelectionMode = SelectionMode.None
+
         Me.txtSupplierName.Text = ""
         Me.txtSupplierAddress.Text = ""
         Me.txtContactName.Text = ""
-
         Me.txtPhoneNumber.Text = ""
         Me.txtFaxNumber.Text = ""
+        Me.txtEmail.Text = ""
+
 
     End Sub
     Private Sub lbSupplier_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbSupplier.Click
@@ -74,23 +75,21 @@ Public Class frmSuppliers
 
         If Trim(Int(cId)) <> 0 Then
             rs = Me.StockDataSet.Suppliers.FindBySupplierID(Int(cId))
-            Me.txtSupplierName.Text = rs("Name")
-
-            Me.txtSupplierAddress.Text = rs("Info")
-            Me.txtPhoneNumber.Text = rs("Salary")
-            Me.txtContactName.Text = rs("DateHired")
+            Me.txtSupplierName.Text = rs("SupplierName")
+            Me.txtSupplierAddress.Text = rs("Address")
+            Me.txtPhoneNumber.Text = rs("PhoneNumber")
+            Me.txtContactName.Text = rs("ContactName")
+            Me.ComboBox1.Text = rs("PaymentTerms")
+            Me.txtEmail.Text = rs("EmailAddress")
+            Me.txtFaxNumber.Text = rs("FaxNumber")
         End If
         Me.btnSave.Enabled = True
         Me.btnAdd.Enabled = False
         Me.btnDelete.Enabled = True
         Me.btnCancel.Enabled = True
 
-        Me.txtPhoneNumber.Enabled = True
-        Me.txtSupplierAddress.Enabled = True
+        Me.GroupBoxComps.Enabled = True
 
-        Me.txtContactName.Enabled = True
-
-        Me.txtSupplierName.Enabled = True
     End Sub
 
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click

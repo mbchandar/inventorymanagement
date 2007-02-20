@@ -9638,12 +9638,40 @@ Namespace stockDataSetTableAdapters
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New System.Data.OleDb.OleDbCommand(0) {}
+            Me._commandCollection = New System.Data.OleDb.OleDbCommand(2) {}
             Me._commandCollection(0) = New System.Data.OleDb.OleDbCommand
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT SupplierID, SupplierName, ContactName, Address, PhoneNumber, FaxNumber, Pa"& _ 
                 "ymentTerms, EmailAddress FROM Suppliers WHERE (isActive = 'Y')"
             Me._commandCollection(0).CommandType = System.Data.CommandType.Text
+            Me._commandCollection(1) = New System.Data.OleDb.OleDbCommand
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "INSERT INTO Suppliers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      (SupplierName, ContactName, Address,"& _ 
+                " PhoneNumber, FaxNumber, PaymentTerms, EmailAddress, isActive)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES     (?, ?"& _ 
+                ", ?, ?, ?, ?, ?, ?)"
+            Me._commandCollection(1).CommandType = System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New System.Data.OleDb.OleDbParameter("SupplierName", System.Data.OleDb.OleDbType.WChar, 50, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierName", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New System.Data.OleDb.OleDbParameter("ContactName", System.Data.OleDb.OleDbType.WChar, 50, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactName", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New System.Data.OleDb.OleDbParameter("Address", System.Data.OleDb.OleDbType.WChar, 255, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Address", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New System.Data.OleDb.OleDbParameter("PhoneNumber", System.Data.OleDb.OleDbType.WChar, 30, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PhoneNumber", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New System.Data.OleDb.OleDbParameter("FaxNumber", System.Data.OleDb.OleDbType.WChar, 30, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FaxNumber", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New System.Data.OleDb.OleDbParameter("PaymentTerms", System.Data.OleDb.OleDbType.WChar, 255, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PaymentTerms", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New System.Data.OleDb.OleDbParameter("EmailAddress", System.Data.OleDb.OleDbType.WChar, 50, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "EmailAddress", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New System.Data.OleDb.OleDbParameter("isActive", System.Data.OleDb.OleDbType.WChar, 50, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "isActive", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2) = New System.Data.OleDb.OleDbCommand
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "UPDATE `Suppliers` SET `SupplierName` = ?, `ContactName` = ?, `Address` = ?, `Pho"& _ 
+                "neNumber` = ?, `FaxNumber` = ?, `PaymentTerms` = ?, `EmailAddress` = ? WHERE `Su"& _ 
+                "pplierID` = ?"
+            Me._commandCollection(2).CommandType = System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New System.Data.OleDb.OleDbParameter("SupplierName", System.Data.OleDb.OleDbType.WChar, 50, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierName", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2).Parameters.Add(New System.Data.OleDb.OleDbParameter("ContactName", System.Data.OleDb.OleDbType.WChar, 50, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ContactName", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2).Parameters.Add(New System.Data.OleDb.OleDbParameter("Address", System.Data.OleDb.OleDbType.WChar, 255, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Address", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2).Parameters.Add(New System.Data.OleDb.OleDbParameter("PhoneNumber", System.Data.OleDb.OleDbType.WChar, 30, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PhoneNumber", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2).Parameters.Add(New System.Data.OleDb.OleDbParameter("FaxNumber", System.Data.OleDb.OleDbType.WChar, 30, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FaxNumber", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2).Parameters.Add(New System.Data.OleDb.OleDbParameter("PaymentTerms", System.Data.OleDb.OleDbType.WChar, 255, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PaymentTerms", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2).Parameters.Add(New System.Data.OleDb.OleDbParameter("EmailAddress", System.Data.OleDb.OleDbType.WChar, 50, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "EmailAddress", System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2).Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SupplierID", System.Data.OleDb.OleDbType.[Integer], 0, System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SupplierID", System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9917,6 +9945,124 @@ Namespace stockDataSetTableAdapters
                     Me.Adapter.UpdateCommand.Connection.Close
                 End If
             End Try
+        End Function
+        
+        <System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, false)>  _
+        Public Overloads Overridable Function InsertQuery(ByVal SupplierName As String, ByVal ContactName As String, ByVal Address As String, ByVal PhoneNumber As String, ByVal FaxNumber As String, ByVal PaymentTerms As String, ByVal EmailAddress As String, ByVal isActive As String) As Integer
+            Dim command As System.Data.OleDb.OleDbCommand = Me.CommandCollection(1)
+            If (SupplierName Is Nothing) Then
+                command.Parameters(0).Value = System.DBNull.Value
+            Else
+                command.Parameters(0).Value = CType(SupplierName,String)
+            End If
+            If (ContactName Is Nothing) Then
+                command.Parameters(1).Value = System.DBNull.Value
+            Else
+                command.Parameters(1).Value = CType(ContactName,String)
+            End If
+            If (Address Is Nothing) Then
+                command.Parameters(2).Value = System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(Address,String)
+            End If
+            If (PhoneNumber Is Nothing) Then
+                command.Parameters(3).Value = System.DBNull.Value
+            Else
+                command.Parameters(3).Value = CType(PhoneNumber,String)
+            End If
+            If (FaxNumber Is Nothing) Then
+                command.Parameters(4).Value = System.DBNull.Value
+            Else
+                command.Parameters(4).Value = CType(FaxNumber,String)
+            End If
+            If (PaymentTerms Is Nothing) Then
+                command.Parameters(5).Value = System.DBNull.Value
+            Else
+                command.Parameters(5).Value = CType(PaymentTerms,String)
+            End If
+            If (EmailAddress Is Nothing) Then
+                command.Parameters(6).Value = System.DBNull.Value
+            Else
+                command.Parameters(6).Value = CType(EmailAddress,String)
+            End If
+            If (isActive Is Nothing) Then
+                command.Parameters(7).Value = System.DBNull.Value
+            Else
+                command.Parameters(7).Value = CType(isActive,String)
+            End If
+            Dim previousConnectionState As System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And System.Data.ConnectionState.Open)  _
+                        <> System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateQuery(ByVal SupplierName As String, ByVal ContactName As String, ByVal Address As String, ByVal PhoneNumber As String, ByVal FaxNumber As String, ByVal PaymentTerms As String, ByVal EmailAddress As String, ByVal Original_SupplierID As Integer) As Integer
+            Dim command As System.Data.OleDb.OleDbCommand = Me.CommandCollection(2)
+            If (SupplierName Is Nothing) Then
+                command.Parameters(0).Value = System.DBNull.Value
+            Else
+                command.Parameters(0).Value = CType(SupplierName,String)
+            End If
+            If (ContactName Is Nothing) Then
+                command.Parameters(1).Value = System.DBNull.Value
+            Else
+                command.Parameters(1).Value = CType(ContactName,String)
+            End If
+            If (Address Is Nothing) Then
+                command.Parameters(2).Value = System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(Address,String)
+            End If
+            If (PhoneNumber Is Nothing) Then
+                command.Parameters(3).Value = System.DBNull.Value
+            Else
+                command.Parameters(3).Value = CType(PhoneNumber,String)
+            End If
+            If (FaxNumber Is Nothing) Then
+                command.Parameters(4).Value = System.DBNull.Value
+            Else
+                command.Parameters(4).Value = CType(FaxNumber,String)
+            End If
+            If (PaymentTerms Is Nothing) Then
+                command.Parameters(5).Value = System.DBNull.Value
+            Else
+                command.Parameters(5).Value = CType(PaymentTerms,String)
+            End If
+            If (EmailAddress Is Nothing) Then
+                command.Parameters(6).Value = System.DBNull.Value
+            Else
+                command.Parameters(6).Value = CType(EmailAddress,String)
+            End If
+            command.Parameters(7).Value = CType(Original_SupplierID,Integer)
+            Dim previousConnectionState As System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And System.Data.ConnectionState.Open)  _
+                        <> System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
         End Function
     End Class
     
