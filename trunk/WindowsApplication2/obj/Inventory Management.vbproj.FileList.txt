@@ -38,3 +38,4 @@ obj\Release\Inventory Management.application
 obj\Release\Inventory Management.exe
 obj\Release\Inventory Management.xml
 obj\Release\Inventory Management.pdb
+obj\Debug\InventorManagement.frmSuppliers.resources

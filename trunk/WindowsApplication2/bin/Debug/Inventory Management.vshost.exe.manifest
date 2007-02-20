@@ -27,14 +27,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Inventory Management.exe" size="536576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Inventory Management.exe" size="577536">
       <assemblyIdentity name="Inventory Management" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>+IpieWZ0fcuwUENnJBo6gMuIc6k=</dsig:DigestValue>
+        <dsig:DigestValue>olq1DfYbkl+NAmvdJTkF9BzQEEQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
